@@ -6,7 +6,7 @@ window.onload = function(){
 
     window.addEventListener('keydown', function(e){
         ;active[0] && active[0].onkeydown &&
-            active[0].onkeydown(e)
+            active[0].onkeydown(e, canvas, con)
 
         if(e.keyCode == 9){
             active.push(active.shift())
