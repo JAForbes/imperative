@@ -1,3 +1,5 @@
+(function(){
+
 var box = {x:300, y:300}
 var amplitude = 1
 var step = 500
@@ -45,7 +47,11 @@ function loop(canvas, con){
     }
 }
 
-var wave = {
+
+window.active = window.active || []
+active.push({
     loop: loop,
     onkeydown: onkeydown
-}
+})
+
+}())

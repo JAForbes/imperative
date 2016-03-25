@@ -36,5 +36,3 @@ window.onload = function(){
     }
     loop()
 }
-
-var active = [wave,asteroids]
