@@ -2,36 +2,53 @@ var ship = { x:0, y: 0, vx:0, vy: 0, angle: 0}
 
 function loop(canvas, context){
 
-    ship.x += ship.vx
-    ship.y += ship.vy
-
     canvas.width = canvas.width
     context.translate(canvas.width/2, canvas.height/2)
 
     context.save()
-        context.translate(-10,-10)
+        context.translate(ship.x, ship.y)
         context.rotate(ship.angle)
-        context.fillRect(ship.x-10,ship.y-10,20,20)
+        context.fillRect(-10,-10,20,20)
     context.restore()
+
+
+    //move
+    ship.x += ship.vx
+    ship.y += ship.vy
+
+
+    //screen wrapping
+
+    var hW = canvas.width/2
+    var hH = canvas.height/2
+    ship.x =
+         ship.x > hW ? -hW:
+         ship.x < -hW ? hW:
+         ship.x
+
+    ship.y =
+        ship.y > hH ? -hH:
+        ship.y < -hH ? hH:
+        ship.y
+
 
 }
 
 function onkeydown(e){
+    //turn
     ship.angle =
         e.keyCode == 39 ?
-            ship.angle + Math.PI / 10 :
+            ship.angle + Math.PI / 100 :
         e.keyCode == 37 ?
-            ship.angle - Math.PI / 10 :
+            ship.angle - Math.PI / 100 :
         ship.angle
 
+    //accelerate
     if(e.keyCode == 38){
-        var v = Math.atan2(ship.vy, ship.vx)
-        v+= ship.angle / 10
-        ship.vx += Math.cos(v)
-        ship.vy += Math.sin(v)
+        ship.vx += Math.sin(-ship.angle) * 1e-1
+        ship.vy += Math.cos(-ship.angle) * 1e-1
     }
 
-  console.log(ship.angle, e.keyCode)
 }
 
 
