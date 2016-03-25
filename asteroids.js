@@ -9,6 +9,7 @@
         context.save()
             context.translate(ship.x, ship.y)
             context.rotate(ship.angle)
+            context.fillRect(-10/2,+10 - 10/2,10,10)
             context.fillRect(-10,-10,20,20)
         context.restore()
 
